@@ -20,6 +20,10 @@ public class GlslCollectingListener extends DefaultPreprocessorListener {
 			builder.append(msg.replace(VERSION_MARKER, "#version "));
 			builder.append('\n');
 		} else if (msg.startsWith(EXTENSION_MARKER)) {
+			if (msg.contains("GL_ARB_shader_texture_lod")) {
+				return;
+			}
+
 			builder.append(msg.replace(EXTENSION_MARKER, "#extension "));
 			builder.append('\n');
 		} else {
